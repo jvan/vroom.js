@@ -44,6 +44,11 @@ app.get('/', function(req, res) {
    res.render('demo', options);
 });
 
+app.get('/examples/:name', function(req, res) {
+   options = { source: '/examples/' + req.params.name + '.js'}
+   _.extend(options, defaults);
+   res.render('demo', options);
+});
 
 io.sockets.on('connection', function(socket) {
    console.log('   [vroom-server] watching file ' + app_source);
