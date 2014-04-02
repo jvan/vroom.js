@@ -7,6 +7,9 @@
       "jade": "*",
       "node-sass": "*",
       "underscore": "*",
-      "node-watch": "*"
+      "node-watch": "*",
+      "grunt": "*",
+      "grunt-contrib-coffee": "*",
+      "grunt-contrib-watch": "*"
    }
 }
