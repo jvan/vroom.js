@@ -14,15 +14,11 @@ html(lang="en")
          var app = null;
 
          $(document).ready(function() {
-            app = new VroomApp('#webgl');
-            app.run();
-            
-            setTimeout(function() { reload('#{source}'); }, 1000);
 
             var socket = new io.connect('http://localhost:3000');
             socket
                .on('update', function(data) {
-                  console.log('[vroom-server]: received update signal');
+                  console.log('   [vroom-server]: received update signal');
                   reload('#{source}');
                });
          });
@@ -41,3 +37,14 @@ html(lang="en")
    body
       block content
 
+   != "<script>\n"
+   - if (query)
+      != "   var opts = {};\n"
+      - for key in Object.keys(query)
+         != "   opts['" + key +  "']='" + query[key] + "';\n"
+      != "   app = new VroomApp('#webgl', opts);\n"
+   - else
+      != "   app = new VroomApp('#webgl');\n"
+   != "   setTimeout(function() { reload('" + source + "'); }, 1000);\n"
+   != "   app.run();\n"
+   != "</script>\n"

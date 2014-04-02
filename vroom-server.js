@@ -53,8 +53,12 @@ app.get('/:root/', function(req, res) {
 });
 
 app.get('/:root/:name', function(req, res) {
-   path = '/' + req.params.root + '/' + req.params.name + '.js'
-   options = { source: path }
+   path = '/' + req.params.root + '/' + req.params.name + '.js';
+   var args = null;
+   if (Object.keys(req.query).length !=0 ) {
+      args = req.query;
+   }
+   options = { source: path, query: args }
    _.extend(options, defaults);
    res.render('demo', options);
 });
