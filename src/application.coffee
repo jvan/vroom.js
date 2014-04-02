@@ -1,7 +1,7 @@
 class VroomApp
    @program: undefined
 
-   constructor: (id) ->
+   constructor: (id, @args=null) ->
       console.log '[VroomApp.constructor]'
       State.get().gl = init_context id
       #gl = @gl
@@ -119,7 +119,7 @@ class VroomApp
       @callbacks.button_release = window.button_release
 
       if not @callbacks.init.hasOwnProperty 'no_update' or @callbacks.init.no_update == false
-         @callbacks.init() if @callbacks.init
+         @callbacks.init @args if @callbacks.init
       @callbacks.frame() if @callbacks.frame
 
       @display()
