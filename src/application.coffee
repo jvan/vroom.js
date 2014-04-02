@@ -14,8 +14,7 @@ class VroomApp
          button_press: undefined
          button_release: undefined
 
-      @program = new Program 'shaders/default.vert', 'shaders/default.frag'
-      #@program = new Program 'shaders/point-cloud.vert', 'shaders/point-cloud.frag'
+      @program = new Program '/shaders/default.vert', '/shaders/default.frag'
       @program.use()
 
       @eye =
