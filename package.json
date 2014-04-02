@@ -1,0 +1,12 @@
+{
+   "name": "vroom.js",
+   "version": "0.0.1",
+   "dependencies": {
+      "express": "*",
+      "socket.io": "*",
+      "jade": "*",
+      "node-sass": "*",
+      "underscore": "*",
+      "node-watch": "*"
+   }
+}
