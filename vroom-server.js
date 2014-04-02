@@ -31,7 +31,7 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
 var vroom_app = process.argv[2];
-var app_source = 'public/apps/' + vroom_app;
+var app_source = 'public/' + vroom_app;
 
 var defaults = {
    title:  'vroom.js',
@@ -40,7 +40,7 @@ var defaults = {
 };
 
 app.get('/', function(req, res) {
-   options = { source: '/apps/' + vroom_app };
+   options = { source: '/' + vroom_app };
    _.extend(options, defaults);
    res.render('demo', options);
 });
