@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+   head
+      title= title
+
+      link(rel="stylesheet", href="/css/bootstrap.min.css")
+
+      script(src="http://localhost:3000/socket.io/socket.io.js")
+      script(src="/js/jquery.min.js")
+      script(src="/js/gl-matrix-min.js")
+      script(src="/js/vroom.js")
+
+      script.
+         var app = null;
+
+         $(document).ready(function() {
+            app = new VroomApp('#webgl');
+            app.run();
+            
+            setTimeout(function() { reload('#{source}'); }, 1000);
+
+            var socket = new io.connect('http://localhost:3000');
+            socket
+               .on('update', function(data) {
+                  console.log('[vroom-server]: received update signal');
+                  reload('#{source}');
+               });
+         });
+
+         function reload(filename) {
+            console.log('[vroom-server]: reloading ' + filename);
+
+            var head = document.getElementsByTagName('head')[0];
+            var new_script = document.createElement('script');
+            new_script.src = filename;
+            head.appendChild(new_script);
+            
+            setTimeout(function() { app.reload(); }, 250);
+         }
+
+   body
+      block content
+
