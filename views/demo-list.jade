@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+   head
+      title= title
+      link(rel="stylesheet", href="/css/bootstrap.min.css")
+
+   body
+      h3= root
+
+      ul.list-unstyled
+         for file in files
+            li
+               h3
+                  a(href='/#{root}/#{file.slice(0,-3)}')= file

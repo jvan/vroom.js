@@ -23,6 +23,7 @@ var express = require('express')
   , jade = require('jade')
   , io = require('socket.io').listen(server)
   , watch = require('node-watch')
+  , fs = require('fs')
   , _ = require('underscore');
 
 app.use(express.static(__dirname + '/public'));
@@ -44,8 +45,16 @@ app.get('/', function(req, res) {
    res.render('demo', options);
 });
 
-app.get('/examples/:name', function(req, res) {
-   options = { source: '/examples/' + req.params.name + '.js'}
+app.get('/:root/', function(req, res) {
+   files = fs.readdirSync('public/' + req.params.root);
+   files = _(files).reject(function(x) { return x[0] == '.' });
+   options = { root: req.params.root, files: files }
+   res.render('demo-list', options);
+});
+
+app.get('/:root/:name', function(req, res) {
+   path = '/' + req.params.root + '/' + req.params.name + '.js'
+   options = { source: path }
    _.extend(options, defaults);
    res.render('demo', options);
 });
