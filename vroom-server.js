@@ -30,20 +30,32 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
-var vroom_app = process.argv[2];
-var app_source = 'public/' + vroom_app;
-
 var defaults = {
    title:  'vroom.js',
    width:  '800',
    height: '600'
 };
 
-app.get('/', function(req, res) {
-   options = { source: '/' + vroom_app };
-   _.extend(options, defaults);
-   res.render('demo', options);
-});
+if (process.argv.length > 2) {
+
+   var vroom_app = process.argv[2];
+   var app_source = 'public/' + vroom_app;
+
+   app.get('/', function(req, res) {
+      options = { source: '/' + vroom_app };
+      _.extend(options, defaults);
+      res.render('demo', options);
+   });
+
+   io.sockets.on('connection', function(socket) {
+      console.log('   [vroom-server] watching file ' + app_source);
+
+      watch(app_source, function() {
+         socket.emit('update', { filename: app_source });
+      });
+
+   });
+}
 
 app.get('/:root/', function(req, res) {
    files = fs.readdirSync('public/' + req.params.root);
@@ -63,14 +75,6 @@ app.get('/:root/:name', function(req, res) {
    res.render('demo', options);
 });
 
-io.sockets.on('connection', function(socket) {
-   console.log('   [vroom-server] watching file ' + app_source);
-
-   watch(app_source, function() {
-      socket.emit('update', { filename: app_source });
-   });
-
-});
 
 var port = process.env.PORT || 3000;
 server.listen(port);
