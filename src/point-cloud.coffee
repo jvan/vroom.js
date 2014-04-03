@@ -5,7 +5,7 @@ _point_cloud =
 init_point_cloud = (gl) ->
    console.log '[init_point_cloud]'
 
-   _point_cloud.program = new Program 'shaders/point-cloud.vert', 'shaders/point-cloud.frag'
+   _point_cloud.program = new Program '/shaders/point-cloud.vert', '/shaders/point-cloud.frag'
    _point_cloud.initialized = true
 
 class PointCloud
