@@ -14,7 +14,8 @@ class VroomApp
          button_press: undefined
          button_release: undefined
 
-      @program = new Program '/shaders/default.vert', '/shaders/default.frag'
+      shaders = glsw.load_shaders '/shaders/default.glsl'
+      @program = new Program shaders.vertex, shaders.fragment
       @program.use()
 
       @eye =

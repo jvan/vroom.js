@@ -1,3 +1,5 @@
+--- vertex
+
 attribute vec4 position;
 attribute vec4 normal;
 
@@ -39,3 +41,12 @@ void main() {
    }
 }
 
+--- fragment
+
+precision mediump float;
+
+varying vec3 v_color;
+
+void main() {
+   gl_FragColor = vec4(v_color, 1.0);
+}

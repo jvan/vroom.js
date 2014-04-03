@@ -1,4 +1,7 @@
-get_shader_source = (filename) ->
+String::startswith = (s) ->
+   this.match("^#{s}") != null
+
+_get_shader_source = (filename) ->
    source = undefined
    $.ajax({
       async: false,
@@ -8,9 +11,40 @@ get_shader_source = (filename) ->
    })
    return source
 
-create_shader = (gl, filename) ->
+_nested_object = (base, keys, value=null) ->
+   if keys.length == 1
+      base[keys[0]] = value
+   else
+      last = keys.pop()
+      for key in keys
+         base = base[key] = base[key] || {}
 
-   type = filename.split('.').pop()
+      base[last] = value if value
+
+glsw =
+   _delimiter: '---'
+   load_shaders: (filename) ->
+      data = _get_shader_source filename
+      lines = data.split '\n'
+
+      _shaders = { }
+
+      [keys, buffer] = [null, []]
+
+      for line in lines
+         if line.startswith glsw._delimiter
+            if keys
+               _nested_object _shaders, keys, buffer.join('\n')
+               buffer = []
+            keys = line.split(glsw._delimiter+' ')[1].split('.')
+         else
+            buffer.push line
+
+      _nested_object _shaders, keys, buffer.join('\n')
+
+      return _shaders
+
+create_shader = (gl, source, type) ->
 
    if type == 'vert'
       shader = gl.createShader gl.VERTEX_SHADER
@@ -19,7 +53,6 @@ create_shader = (gl, filename) ->
    else
       return null
 
-   source = get_shader_source filename
    gl.shaderSource shader, source
    gl.compileShader shader
 
@@ -80,11 +113,11 @@ class AttribLocation extends Location
       @gl.vertexAttribPointer @_loc, size, type, false, stride, offset
 
 class Program
-   constructor: (vert_file, frag_file) ->
+   constructor: (vert_source, frag_source) ->
       @gl = State.get().gl
       
-      vertexShader = create_shader @gl, vert_file
-      fragmentShader = create_shader @gl, frag_file
+      vertexShader = create_shader @gl, vert_source, 'vert'
+      fragmentShader = create_shader @gl, frag_source, 'frag'
 
       @_program = @gl.createProgram()
       @gl.attachShader @_program, vertexShader
@@ -123,3 +156,5 @@ class Program
 window.Program = Program
 window.AttribLocation = AttribLocation
 window.UniformLocation = UniformLocation
+
+window.glsw = glsw
