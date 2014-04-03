@@ -1,32 +1,28 @@
-# vroom.js
+vroom.js is an experimental webgl port of vroom. 
 
-**vroom.js** is an experimental webgl port of the *vroom* visualization 
-framework. Applications are written in javascript and can be viewed in
-any webgl-capable browser (you can check if your current browser supports
-webgl [webgl-check](here).
+Applications are written in javascript and can be viewed in any webgl-capable
+browser (you can check if your current browser supports webgl
+[here][webgl-check]).
 
 [webgl-check]: http://doesmybrowsersupportwebgl.com
 
 
-## installation
+## Installation
 
-### node.js
+vroom.js requires [node][node]. You can download an installer for
+your system [here][node-download].
 
-**vroom.js** requires [node](node). You can download an installer for
-your system [node-download](here).
+After installing node on your system, install coffeescript and additional
+dependencies.
 
-After installing node on your system, install the required modules by 
-running the following command in the root **vroom.js** directory.
-
-```bash
+```shell
+sudo npm install -g coffee-script
 npm install
 ```
 
-### vroom.js
+Once the necessary packages are installed, build the vroom.js library.
 
-To build the **vroom.js** library simply run the following command.
-
-```bash
+```shell
 grunt
 ```
 
@@ -34,3 +30,25 @@ grunt
 [node-download]: http://nodejs.org/download/
 
 
+## Getting Started
+
+Start the vroom.js server.
+
+```shell
+vroom-server.js
+```
+
+You can see a list of example programs by opening
+[localhost:3000/examples/](localhost:3000/examples/) in your web browser.
+
+Applications are located in the `public/apps/` directory.  To enable
+live-coding, provide the path to the source file (relative to the `public/`
+directory) when starting the server. For example, to run the application
+`public/apps/simple.js` execute the following command.
+
+```shell
+vroom-server.js apps/simple.js
+```
+
+The application can then be viewed at [localhost:3000/](localhost:3000/). When
+changes are made to the source code the application will update automatically. 
