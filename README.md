@@ -12,11 +12,12 @@ browser (you can check if your current browser supports webgl
 vroom.js requires [node][node]. You can download an installer for
 your system [here][node-download].
 
-After installing node on your system, install coffeescript and additional
-dependencies.
+After installing node on your system, install coffeescript, grunt, and
+additional dependencies.
 
 ```shell
 sudo npm install -g coffee-script
+sudo npm install -g grunt-cli
 npm install
 ```
 
