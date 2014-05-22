@@ -3,4 +3,7 @@
 node_modules/*
 bower_components/*
 
+public/css/vendor/*
+public/js/vendor/*
+
 public/js/vroom.js
