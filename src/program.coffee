@@ -1,7 +1,7 @@
 String::startswith = (s) ->
    this.match("^#{s}") != null
 
-_get_shader_source = (filename) ->
+_read_file = (filename) ->
    source = undefined
    $.ajax({
       async: false,
@@ -24,7 +24,7 @@ _nested_object = (base, keys, value=null) ->
 glsw =
    _delimiter: '---'
    load_shaders: (filename) ->
-      data = _get_shader_source filename
+      data = _read_file  filename
       lines = data.split '\n'
 
       _shaders = { }
@@ -113,11 +113,12 @@ class AttribLocation extends Location
       @gl.vertexAttribPointer @_loc, size, type, false, stride, offset
 
 class Program
-   constructor: (vert_source, frag_source) ->
+   constructor: (shader_file) ->
+      shaders = glsw.load_shaders shader_file
       @gl = State.get().gl
       
-      vertexShader = create_shader @gl, vert_source, 'vert'
-      fragmentShader = create_shader @gl, frag_source, 'frag'
+      vertexShader = create_shader @gl, shaders.vertex, 'vert'
+      fragmentShader = create_shader @gl, shaders.fragment, 'frag'
 
       @_program = @gl.createProgram()
       @gl.attachShader @_program, vertexShader
@@ -135,7 +136,7 @@ class Program
 
    loc: (type, name) ->
       if type == 'uniform'
-        @gl.getUniformLocation @_program, name
+         @gl.getUniformLocation @_program, name
       if type == 'attrib'
          @gl.getAttribLocation @_program, name
 
@@ -158,3 +159,5 @@ window.AttribLocation = AttribLocation
 window.UniformLocation = UniformLocation
 
 window.glsw = glsw
+
+window.read_file = _read_file

@@ -5,8 +5,7 @@ _point_cloud =
 init_point_cloud = (gl) ->
    console.log '[init_point_cloud]'
 
-   shaders = glsw.load_shaders '/shaders/point-cloud.glsl'
-   _point_cloud.program = new Program shaders.vertex, shaders.fragment
+   _point_cloud.program = new Program '/shaders/point-cloud.glsl'
    _point_cloud.initialized = true
 
 class PointCloud

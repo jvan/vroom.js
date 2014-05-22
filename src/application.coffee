@@ -14,8 +14,7 @@ class VroomApp
          button_press: undefined
          button_release: undefined
 
-      shaders = glsw.load_shaders '/shaders/default.glsl'
-      @program = new Program shaders.vertex, shaders.fragment
+      @program = new Program '/shaders/default.glsl'
       @program.use()
 
       @eye =
@@ -64,9 +63,9 @@ class VroomApp
          rect = ev.target.getBoundingClientRect()
 
          if rect.left <= click.x and click.x < rect.right and
-            rect.top  <= click.y and click.y < rect.bottom
-               @prev = click
-               @dragging = true
+         rect.top  <= click.y and click.y < rect.bottom
+            @prev = click
+            @dragging = true
          else
             @dragging = false
 
