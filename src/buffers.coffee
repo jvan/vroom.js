@@ -36,6 +36,12 @@ class Buffer
    offset: (n) ->
       n * @_byte_size
 
+   draw: ->
+      @bind()
+      vroom.program.attribLoc('position').attribArray 3, @gl.FLOAT, 0, 0
+      @gl.drawArrays @gl.LINES, 0, (@_count / 3)
+      @protect()
+
 class VertexBuffer extends Buffer
    constructor: (data, hint=State.get().gl.STATIC_DRAW) ->
       super State.get().gl.ARRAY_BUFFER, data, hint
