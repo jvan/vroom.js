@@ -1,0 +1,16 @@
+{
+  "name": "vroom.js",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.1.1",
+    "gl-matrix": "~2.2.1",
+    "numericjs": "~1.2.6"
+  }
+}
