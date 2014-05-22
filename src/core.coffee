@@ -66,3 +66,5 @@ window.blue   = [0, 0, 1]
 
 window.purple = [0.5, 0.0, 1.0]
 window.orange = [1.0, 0.5, 0.0]
+
+#exports.color_args = _process_color_args
