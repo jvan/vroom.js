@@ -13,7 +13,7 @@ mat4 transform = proj * view * model;
 
 void main() {
    gl_Position = transform * position;
-   gl_PointSize = 5.0 + 5.0 * color.g;
+   gl_PointSize = 5.0;
 
    v_color = color.rgb;
 }
