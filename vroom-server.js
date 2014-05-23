@@ -24,7 +24,8 @@ var express = require('express')
   , io = require('socket.io').listen(server)
   , watch = require('node-watch')
   , fs = require('fs')
-  , _ = require('underscore');
+  , _ = require('underscore')
+  , settings = require('./config.json');
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
@@ -32,8 +33,8 @@ app.set('views', __dirname + '/views');
 
 var defaults = {
    title:  'vroom.js',
-   width:  '800',
-   height: '600'
+   width:  settings.canvas.width,
+   height: settings.canvas.height
 };
 
 if (process.argv.length > 2) {
