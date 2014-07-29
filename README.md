@@ -15,7 +15,7 @@ vroom.js requires [node][node]. You can download an installer for
 your system [here][node-download].
 
 After installing node on your system, install [coffeescript][coffeescript], 
-[grunt][grunt], [bower][bower].
+[grunt][grunt], and [bower][bower].
 
    ```sh
    sudo npm install -g coffee-script
