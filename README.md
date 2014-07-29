@@ -1,3 +1,5 @@
+# vroom.js
+
 vroom.js is an experimental webgl port of vroom. 
 
 Applications are written in javascript and can be viewed in any webgl-capable
@@ -15,16 +17,16 @@ your system [here][node-download].
 After installing node on your system, install coffeescript, grunt, and
 additional dependencies.
 
-```shell
-sudo npm install -g coffee-script
-sudo npm install -g grunt-cli
-npm install
-```
+   ```sh
+   sudo npm install -g coffee-script
+   sudo npm install -g grunt-cli
+   npm install
+   ```
 
 Once the necessary packages are installed, build the vroom.js library.
 
-```shell
-grunt
+   ```sh
+   grunt
 ```
 
 [node]: http://nodejs.org
@@ -35,21 +37,21 @@ grunt
 
 Start the vroom.js server.
 
-```shell
-vroom-server.js
+   ```sh
+   vroom-server.js
 ```
 
 You can see a list of example programs by opening
-[localhost:3000/examples/](localhost:3000/examples/) in your web browser.
+[localhost:3000/examples/](http://localhost:3000/examples/) in your web browser.
 
 Applications are located in the `public/apps/` directory.  To enable
 live-coding, provide the path to the source file (relative to the `public/`
 directory) when starting the server. For example, to run the application
 `public/apps/simple.js` execute the following command.
 
-```shell
-vroom-server.js apps/simple.js
-```
+   ```sh
+   vroom-server.js apps/simple.js
+   ```
 
-The application can then be viewed at [localhost:3000/](localhost:3000/). When
+The application can then be viewed at [localhost:3000/](http://localhost:3000/). When
 changes are made to the source code the application will update automatically. 
