@@ -14,12 +14,19 @@ browser (you can check if your current browser supports webgl
 vroom.js requires [node][node]. You can download an installer for
 your system [here][node-download].
 
-After installing node on your system, install coffeescript, grunt, and
-additional dependencies.
+After installing node on your system, install [coffeescript][coffeescript], 
+[grunt][grunt], [bower][bower].
 
    ```sh
    sudo npm install -g coffee-script
    sudo npm install -g grunt-cli
+   sudo npm install -g bower
+   ```
+
+Then, install the bower and npm packages.
+
+   ```sh
+   bower install
    npm install
    ```
 
@@ -27,10 +34,14 @@ Once the necessary packages are installed, build the vroom.js library.
 
    ```sh
    grunt
-```
+   ```
 
 [node]: http://nodejs.org
 [node-download]: http://nodejs.org/download/
+
+[coffeescript]: http://coffeescript.org
+[grunt]: http://gruntjs.com
+[bower]: http://bower.io
 
 
 ## Getting Started
@@ -39,7 +50,7 @@ Start the vroom.js server.
 
    ```sh
    vroom-server.js
-```
+   ```
 
 You can see a list of example programs by opening
 [localhost:3000/examples/](http://localhost:3000/examples/) in your web browser.
