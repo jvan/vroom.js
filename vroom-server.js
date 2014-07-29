@@ -81,4 +81,8 @@ var port = process.env.PORT || 3000;
 server.listen(port);
 
 console.log('   [vroom-server] running on port 3000')
-console.log('   [vroom-server] open http://localhost:3000 to view your app')
+if (process.argv.length > 2) {
+   console.log('   [vroom-server] go to http://localhost:' + port + ' to view your app')
+}
+console.log('   [vroom-server] go to http://localhost:' + port + '/examples for example apps')
+
